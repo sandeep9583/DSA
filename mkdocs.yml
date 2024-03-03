@@ -1,0 +1,101 @@
+site_name: Data Engineering and DSA Notes
+theme:
+  name: material
+  config:
+    static_templates:
+      - 404.html
+
+  features:
+    - announce.dismiss
+    - content.action.edit
+    - content.action.view
+    - content.code.annotate
+    - content.code.copy
+    # - content.tabs.link
+    - content.tooltips
+    - header.autohide
+    # - navigation.expand
+    - navigation.footer
+    - navigation.indexes
+    - navigation.instant
+    - navigation.path
+    # - navigation.prune
+    # - navigation.sections
+    - navigation.tabs
+    # - navigation.tabs.sticky
+    - navigation.top
+    - navigation.tracking
+    - search.highlight
+    - search.share
+    - search.suggest
+    - toc.follow
+    # - toc.integrate
+  palette:
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      primary: white
+      accent: white
+      toggle:
+        icon: material/lightbulb
+        name: Switch to dark mode
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: black
+      accent: black
+      toggle:
+        icon: material/lightbulb-outline
+        name: Switch to light mode
+
+
+markdown_extensions:
+  - meta
+  - def_list
+  - pymdownx.tasklist:
+      custom_checkbox: true
+  - attr_list
+  - md_in_html
+  - pymdownx.arithmatex:
+      generic: true
+  - toc:
+      permalink: true
+  - pymdownx.highlight:
+      anchor_linenums: true
+  - pymdownx.inlinehilite
+  - pymdownx.snippets
+  - pymdownx.superfences
+  - admonition
+  - pymdownx.details
+  - pymdownx.superfences
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
+  # - pymdownx.superfences:
+  #     custom_fences:
+  #       - name: plotly
+  #         class: mkdocs-plotly
+  #         format: !!python/name:mkdocs_plotly_plugin.fences.fence_plotly
+
+
+plugins:
+  # - table-reader ## IMPORTANT: This plugin must be installed for it to work, pip install mkdocs-table-reader-plugin
+  # - glightbox
+  # - live-edit ## IMPORTANT: This plugin must be installed for it to work, pip install mkdocs-live-edit-plugin - by this plugin you can edit the markdown file in the browser itself
+  # - mkdocs-video # for this to work , all .md files should not be empty, it should have some content
+  # - plotly
+  # - minify:
+  #     minify_html: true
+  #     minify_js: true
+  #     minify_css: true
+  #     htmlmin_opts:
+  #         remove_comments: true
+  #     cache_safe: true
+  # - awesome-pages
+  - offline
+
+
+  - search:
+      separator: '[\s\-,:!=\[\]()"/]+|(?!\b)(?=[A-Z][a-z])|\.(?!\d)|&[lg]t;'
+
+
