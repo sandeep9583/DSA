@@ -97,6 +97,7 @@ plugins:
   #     cache_safe: true
   # - awesome-pages
   - offline
+  - mkdocs-pdf
 
 
   - search:
