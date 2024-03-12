@@ -1,0 +1,2237 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../../2.SQL%20Basics.html">
+      
+      
+        <link rel="next" href="Sample.html">
+      
+      
+      <link rel="icon" href="../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.5.3, mkdocs-material-9.5.13">
+    
+    
+      
+        <title>Assignment 1 - Data Engineering and DSA Notes</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.7e359304.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+        <script src="https://unpkg.com/iframe-worker/shim"></script>
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="white" data-md-color-accent="white">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#sql-assignment1" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../../index.html" title="Data Engineering and DSA Notes" class="md-header__button md-logo" aria-label="Data Engineering and DSA Notes" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Data Engineering and DSA Notes
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Assignment 1
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="white" data-md-color-accent="white"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2a7 7 0 0 0-7 7c0 2.38 1.19 4.47 3 5.74V17a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1v-2.26c1.81-1.27 3-3.36 3-5.74a7 7 0 0 0-7-7M9 21a1 1 0 0 0 1 1h4a1 1 0 0 0 1-1v-1H9v1Z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="black" data-md-color-accent="black"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2a7 7 0 0 1 7 7c0 2.38-1.19 4.47-3 5.74V17a1 1 0 0 1-1 1H9a1 1 0 0 1-1-1v-2.26C6.19 13.47 5 11.38 5 9a7 7 0 0 1 7-7M9 21v-1h6v1a1 1 0 0 1-1 1h-4a1 1 0 0 1-1-1m3-17a5 5 0 0 0-5 5c0 2.05 1.23 3.81 3 4.58V16h4v-2.42c1.77-.77 3-2.53 3-4.58a5 5 0 0 0-5-5Z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var media,input,key,value,palette=__md_get("__palette");if(palette&&palette.color){"(prefers-color-scheme)"===palette.color.media&&(media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']"),palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent"));for([key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+          <a href="javascript:void(0)" class="md-search__icon md-icon" title="Share" aria-label="Share" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+            
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7 0-.24-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91 1.61 0 2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08Z"/></svg>
+          </a>
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../index.html" class="md-tabs__link">
+        
+  
+    
+  
+  Data Engineering and DSA
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../DSA/code.html" class="md-tabs__link">
+          
+  
+    
+  
+  DSA
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../../1.introduction.html" class="md-tabs__link">
+          
+  
+    
+  
+  SQL
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../../index.html" title="Data Engineering and DSA Notes" class="md-nav__button md-logo" aria-label="Data Engineering and DSA Notes" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    Data Engineering and DSA Notes
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../index.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Data Engineering and DSA
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    DSA
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            DSA
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../DSA/code.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    code
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+        
+        
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    SQL
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            SQL
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../1.introduction.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    1.Introduction
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../2.SQL%20Basics.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    2.Basics
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_3" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_3_3" id="__nav_3_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Assignments
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3_3">
+            <span class="md-nav__icon md-icon"></span>
+            Assignments
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_3_1" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_3_3_1" id="__nav_3_3_1_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    SQL
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_3_3_1_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3_3_1">
+            <span class="md-nav__icon md-icon"></span>
+            SQL
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Assignment 1
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="Assignment-1.html" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    Assignment 1
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#sql-assignment1" class="md-nav__link">
+    <span class="md-ellipsis">
+      SQL Assignment1
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="SQL Assignment1">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#creating-the-city-table" class="md-nav__link">
+    <span class="md-ellipsis">
+      Creating the CITY Table
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#describing-the-city-table" class="md-nav__link">
+    <span class="md-ellipsis">
+      Describing the CITY Table
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#inserting-data-into-the-city-table" class="md-nav__link">
+    <span class="md-ellipsis">
+      Inserting Data into the CITY Table
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#selecting-all-rows-from-the-city-table" class="md-nav__link">
+    <span class="md-ellipsis">
+      Selecting All Rows from the CITY Table
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#filtering-rows-based-on-conditions" class="md-nav__link">
+    <span class="md-ellipsis">
+      Filtering Rows Based on Conditions
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#alternative-query-with-asterisk" class="md-nav__link">
+    <span class="md-ellipsis">
+      Alternative Query with Asterisk
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#creating-the-station-table" class="md-nav__link">
+    <span class="md-ellipsis">
+      Creating the STATION Table
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#describing-the-station-table" class="md-nav__link">
+    <span class="md-ellipsis">
+      Describing the STATION Table
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#inserting-data-into-the-station-table" class="md-nav__link">
+    <span class="md-ellipsis">
+      Inserting Data into the STATION Table
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#selecting-all-rows-from-the-station-table" class="md-nav__link">
+    <span class="md-ellipsis">
+      Selecting All Rows from the STATION Table
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#selecting-specific-columns-from-the-station-table" class="md-nav__link">
+    <span class="md-ellipsis">
+      Selecting Specific Columns from the STATION Table
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#selecting-distinct-city-names-from-station-table" class="md-nav__link">
+    <span class="md-ellipsis">
+      Selecting Distinct City Names from STATION Table
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#explanation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Explanation:
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#explanation_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Explanation
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#result" class="md-nav__link">
+    <span class="md-ellipsis">
+      Result
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Result">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#objective" class="md-nav__link">
+    <span class="md-ellipsis">
+      Objective
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#explanation_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      Explanation
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#query-2" class="md-nav__link">
+    <span class="md-ellipsis">
+      Query 2
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Query 2">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#objective_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Objective
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#explanation_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      Explanation
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#result_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Result
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#objective_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      Objective
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#explanation_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      Explanation
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#result_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      Result
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#objective_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      Objective
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#explanation_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      Explanation
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#result_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      Result
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#objective_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      Objective
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#explanation_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      Explanation
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#result_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      Result
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#objective_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      Objective
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#explanation_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      Explanation
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#result_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      Result
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="Sample.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    SQL Query Challenges
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_4" id="__nav_3_4_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Exercises
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_4">
+            <span class="md-nav__icon md-icon"></span>
+            Exercises
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Exercises/Exercise1.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Exercise1
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Exercises/Exercise2.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Exercise2
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Exercises/Exercise3.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Exercise 3
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Exercises/Exercise4.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Exercise 4
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_5" id="__nav_3_5_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Interview Questions
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_5">
+            <span class="md-nav__icon md-icon"></span>
+            Interview Questions
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Interview%20Questions/interview%20Questions.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    SQL Interview Questions
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#sql-assignment1" class="md-nav__link">
+    <span class="md-ellipsis">
+      SQL Assignment1
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="SQL Assignment1">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#creating-the-city-table" class="md-nav__link">
+    <span class="md-ellipsis">
+      Creating the CITY Table
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#describing-the-city-table" class="md-nav__link">
+    <span class="md-ellipsis">
+      Describing the CITY Table
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#inserting-data-into-the-city-table" class="md-nav__link">
+    <span class="md-ellipsis">
+      Inserting Data into the CITY Table
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#selecting-all-rows-from-the-city-table" class="md-nav__link">
+    <span class="md-ellipsis">
+      Selecting All Rows from the CITY Table
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#filtering-rows-based-on-conditions" class="md-nav__link">
+    <span class="md-ellipsis">
+      Filtering Rows Based on Conditions
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#alternative-query-with-asterisk" class="md-nav__link">
+    <span class="md-ellipsis">
+      Alternative Query with Asterisk
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#creating-the-station-table" class="md-nav__link">
+    <span class="md-ellipsis">
+      Creating the STATION Table
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#describing-the-station-table" class="md-nav__link">
+    <span class="md-ellipsis">
+      Describing the STATION Table
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#inserting-data-into-the-station-table" class="md-nav__link">
+    <span class="md-ellipsis">
+      Inserting Data into the STATION Table
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#selecting-all-rows-from-the-station-table" class="md-nav__link">
+    <span class="md-ellipsis">
+      Selecting All Rows from the STATION Table
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#selecting-specific-columns-from-the-station-table" class="md-nav__link">
+    <span class="md-ellipsis">
+      Selecting Specific Columns from the STATION Table
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#selecting-distinct-city-names-from-station-table" class="md-nav__link">
+    <span class="md-ellipsis">
+      Selecting Distinct City Names from STATION Table
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#explanation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Explanation:
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#explanation_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Explanation
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#result" class="md-nav__link">
+    <span class="md-ellipsis">
+      Result
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Result">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#objective" class="md-nav__link">
+    <span class="md-ellipsis">
+      Objective
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#explanation_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      Explanation
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#query-2" class="md-nav__link">
+    <span class="md-ellipsis">
+      Query 2
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Query 2">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#objective_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Objective
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#explanation_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      Explanation
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#result_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Result
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#objective_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      Objective
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#explanation_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      Explanation
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#result_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      Result
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#objective_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      Objective
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#explanation_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      Explanation
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#result_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      Result
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#objective_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      Objective
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#explanation_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      Explanation
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#result_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      Result
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#objective_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      Objective
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#explanation_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      Explanation
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#result_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      Result
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  <h1>Assignment 1</h1>
+
+<div><h2 id="sql-assignment1">SQL Assignment1<a class="headerlink" href="#sql-assignment1" title="Permanent link">¶</a></h2>
+<p>Q1.  Query all columns for all American cities in the CITY table with populations larger than 100000. The CountryCode for America is USA.
+The CITY table is described as follows:</p>
+<p><img alt="Alt text" src="attachments/image.png"></p>
+<details class="note">
+<summary>Answer</summary>
+<h3 id="creating-the-city-table">Creating the CITY Table<a class="headerlink" href="#creating-the-city-table" title="Permanent link">¶</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">CITY</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="p">(</span>
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="w">    </span><span class="n">ID</span><span class="w"> </span><span class="nb">INT</span><span class="p">,</span>
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="w">    </span><span class="n">NAME</span><span class="w"> </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">17</span><span class="p">),</span>
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="w">    </span><span class="n">COUNTRYCODE</span><span class="w"> </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">3</span><span class="p">),</span>
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="w">    </span><span class="n">DISTRICT</span><span class="w"> </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">20</span><span class="p">),</span>
+<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="w">    </span><span class="n">POPULATION</span><span class="w"> </span><span class="nb">INT</span>
+<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="p">);</span>
+</code></pre></div>
+<p>This SQL command creates a table named CITY with columns ID (integer), NAME (varchar with a maximum length of 17 characters), COUNTRYCODE (varchar with a maximum length of 3 characters), DISTRICT (varchar with a maximum length of 20 characters), and POPULATION (integer).</p>
+<h3 id="describing-the-city-table">Describing the CITY Table<a class="headerlink" href="#describing-the-city-table" title="Permanent link">¶</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="k">DESCRIBE</span><span class="w"> </span><span class="n">CITY</span><span class="p">;</span>
+</code></pre></div>
+<p>This command is used to display information about the structure of the CITY table, including the column names, data types, and any constraints.</p>
+<h3 id="inserting-data-into-the-city-table">Inserting Data into the CITY Table<a class="headerlink" href="#inserting-data-into-the-city-table" title="Permanent link">¶</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="k">INSERT</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="n">CITY</span><span class="w"> </span><span class="k">VALUES</span>
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="p">(</span><span class="mi">6</span><span class="p">,</span><span class="w"> </span><span class="s1">'Rotterdam'</span><span class="p">,</span><span class="w"> </span><span class="s1">'NLD'</span><span class="p">,</span><span class="w"> </span><span class="s1">'Zuid-Holland'</span><span class="p">,</span><span class="w"> </span><span class="mi">593321</span><span class="p">),</span>
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="p">(</span><span class="mi">3878</span><span class="p">,</span><span class="w"> </span><span class="s1">'Scottsdale'</span><span class="p">,</span><span class="w"> </span><span class="s1">'USA'</span><span class="p">,</span><span class="w"> </span><span class="s1">'Arizona'</span><span class="p">,</span><span class="w"> </span><span class="mi">202705</span><span class="p">),</span>
+<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="c1">-- (and additional rows)</span>
+<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="p">;</span>
+</code></pre></div>
+<p>These commands insert data into the CITY table, providing values for the ID, NAME, COUNTRYCODE, DISTRICT, and POPULATION columns for each row.</p>
+<h3 id="selecting-all-rows-from-the-city-table">Selecting All Rows from the CITY Table<a class="headerlink" href="#selecting-all-rows-from-the-city-table" title="Permanent link">¶</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="k">SELECT</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">CITY</span><span class="p">;</span>
+</code></pre></div>
+<p>This command retrieves all rows from the CITY table, displaying the values in all columns for each row.</p>
+<h3 id="filtering-rows-based-on-conditions">Filtering Rows Based on Conditions<a class="headerlink" href="#filtering-rows-based-on-conditions" title="Permanent link">¶</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="k">SELECT</span><span class="w"> </span><span class="n">ID</span><span class="p">,</span><span class="w"> </span><span class="n">NAME</span><span class="p">,</span><span class="w"> </span><span class="n">COUNTRYCODE</span><span class="p">,</span><span class="w"> </span><span class="n">DISTRICT</span><span class="p">,</span><span class="w"> </span><span class="n">POPULATION</span>
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="k">FROM</span><span class="w"> </span><span class="n">CITY</span>
+<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="k">WHERE</span><span class="w"> </span><span class="n">COUNTRYCODE</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">'USA'</span><span class="w"> </span><span class="k">AND</span><span class="w"> </span><span class="n">POPULATION</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">100000</span><span class="p">;</span>
+</code></pre></div>
+<p>This query selects specific columns from the CITY table for rows where the COUNTRYCODE is 'USA' and the POPULATION is greater than 100,000.</p>
+<h3 id="alternative-query-with-asterisk">Alternative Query with Asterisk<a class="headerlink" href="#alternative-query-with-asterisk" title="Permanent link">¶</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="k">SELECT</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">CITY</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="n">COUNTRYCODE</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">'USA'</span><span class="w"> </span><span class="k">AND</span><span class="w"> </span><span class="n">POPULATION</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">100000</span><span class="p">;</span>
+</code></pre></div>
+<p>This is an equivalent query to the previous one, but it selects all columns using the asterisk (*) wildcard.</p>
+</details>
+<p>Q2.Query the NAME field for all American cities in the CITY table with populations larger than 120000. The CountryCode for America is USA.
+The CITY table is described as follows:</p>
+<details class="note">
+<summary>Answer</summary>
+<p>SELECT NAME FROM CITY WHERE COUNTRYCODE = 'USA' AND POPULATION &gt;
+120000;</p>
+</details>
+<p>Q3. Query all columns (attributes) for every row in the CITY table. The CITY table is described as follows:</p>
+<details class="note">
+<summary>Answer</summary>
+<p>select * from CITY;</p>
+</details>
+<p>Q4. Query all columns for a city in CITY with the ID 1661.</p>
+<details class="note">
+<summary>Answer</summary>
+<p>select * from CITY where ID = 1661;</p>
+</details>
+<p>Q5. Query all attributes of every Japanese city in the CITY table. The COUNTRYCODE for Japan is JPN.</p>
+<details class="note">
+<summary>Answer</summary>
+<p>SELECT * FROM CITY WHERE COUNTRYCODE = 'JPN';</p>
+</details>
+<p>Q6. Query the names of all the Japanese cities in the CITY table. The COUNTRYCODE for Japan is JPN.</p>
+<details class="note">
+<summary>Answer</summary>
+<p>SELECT NAME FROM CITY WHERE COUNTRYCODE = 'JPN';</p>
+</details>
+<p>Q7. Query a list of CITY and STATE from the STATION table. The STATION table is described as follows:</p>
+<p><img alt="img.png" src="attachments/img.png"></p>
+<p>where LAT_N is the northern latitude and LONG_W is the western longitude.</p>
+<details class="note">
+<summary>Answer</summary>
+<p>Certainly! Here's an explanation of the provided SQL commands in Markdown format:</p>
+<h3 id="creating-the-station-table">Creating the STATION Table<a class="headerlink" href="#creating-the-station-table" title="Permanent link">¶</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="k">IF</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">EXISTS</span><span class="w"> </span><span class="n">STATION</span>
+<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="p">(</span>
+<a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a><span class="w">     </span><span class="n">ID</span><span class="w"> </span><span class="nb">INT</span><span class="p">,</span>
+<a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a><span class="w">     </span><span class="n">CITY</span><span class="w"> </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">21</span><span class="p">),</span>
+<a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a><span class="w">     </span><span class="k">STATE</span><span class="w"> </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">2</span><span class="p">),</span>
+<a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a><span class="w">     </span><span class="n">LAT_N</span><span class="w"> </span><span class="nb">INT</span><span class="p">,</span>
+<a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a><span class="w">     </span><span class="n">LONG_W</span><span class="w"> </span><span class="nb">INT</span>
+<a id="__codelineno-6-8" name="__codelineno-6-8" href="#__codelineno-6-8"></a><span class="p">);</span>
+</code></pre></div>
+<p>This SQL command creates a table named STATION with columns ID (integer), CITY (varchar with a maximum length of 21 characters), STATE (varchar with a maximum length of 2 characters), LAT_N (integer), and LONG_W (integer). The "IF NOT EXISTS" clause ensures that the table is created only if it does not already exist.</p>
+<h3 id="describing-the-station-table">Describing the STATION Table<a class="headerlink" href="#describing-the-station-table" title="Permanent link">¶</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="k">DESCRIBE</span><span class="w"> </span><span class="n">STATION</span><span class="p">;</span>
+</code></pre></div>
+<p>This command is used to display information about the structure of the STATION table, including the column names, data types, and any constraints.</p>
+<h3 id="inserting-data-into-the-station-table">Inserting Data into the STATION Table<a class="headerlink" href="#inserting-data-into-the-station-table" title="Permanent link">¶</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="c1">-- (Multiple INSERT statements with data)</span>
+<a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a><span class="k">INSERT</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="n">STATION</span><span class="w"> </span><span class="k">VALUES</span>
+<a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a><span class="p">(</span><span class="mi">794</span><span class="p">,</span><span class="w"> </span><span class="s1">'Kissee Mills'</span><span class="p">,</span><span class="w"> </span><span class="s1">'MO'</span><span class="p">,</span><span class="w"> </span><span class="mi">139</span><span class="p">,</span><span class="w"> </span><span class="mi">73</span><span class="p">),</span>
+<a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a><span class="p">(</span><span class="mi">824</span><span class="p">,</span><span class="w"> </span><span class="s1">'Loma Mar'</span><span class="p">,</span><span class="w"> </span><span class="s1">'CA'</span><span class="p">,</span><span class="w"> </span><span class="mi">48</span><span class="p">,</span><span class="w"> </span><span class="mi">130</span><span class="p">),</span>
+<a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a><span class="c1">-- (and additional rows)</span>
+<a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a><span class="p">;</span>
+</code></pre></div>
+<p>These commands insert data into the STATION table, providing values for the ID, CITY, STATE, LAT_N, and LONG_W columns for each row.</p>
+<h3 id="selecting-all-rows-from-the-station-table">Selecting All Rows from the STATION Table<a class="headerlink" href="#selecting-all-rows-from-the-station-table" title="Permanent link">¶</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="k">SELECT</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">STATION</span><span class="p">;</span>
+</code></pre></div>
+<p>This command retrieves all rows from the STATION table, displaying the values in all columns for each row.</p>
+<h3 id="selecting-specific-columns-from-the-station-table">Selecting Specific Columns from the STATION Table<a class="headerlink" href="#selecting-specific-columns-from-the-station-table" title="Permanent link">¶</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="k">SELECT</span><span class="w"> </span><span class="n">CITY</span><span class="p">,</span><span class="w"> </span><span class="k">STATE</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">STATION</span><span class="p">;</span>
+</code></pre></div>
+<p>This query selects specific columns (CITY and STATE) from the STATION table for all rows. It retrieves only the specified columns, providing a focused view of the data.</p>
+</details>
+<p>Q8. Query a list of CITY names from STATION for cities that have an even ID number. Print the results in any order, but exclude duplicates from the answer.</p>
+<details class="note">
+<summary>Answer</summary>
+<h3 id="selecting-distinct-city-names-from-station-table">Selecting Distinct City Names from STATION Table<a class="headerlink" href="#selecting-distinct-city-names-from-station-table" title="Permanent link">¶</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="k">SELECT</span><span class="w"> </span><span class="k">DISTINCT</span><span class="p">(</span><span class="n">CITY</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">City_Name</span>
+<a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a><span class="k">FROM</span><span class="w"> </span><span class="n">STATION</span>
+<a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a><span class="k">WHERE</span><span class="w"> </span><span class="n">ID</span><span class="w"> </span><span class="o">%</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span>
+<a id="__codelineno-11-4" name="__codelineno-11-4" href="#__codelineno-11-4"></a><span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">CITY</span><span class="w"> </span><span class="k">ASC</span><span class="p">;</span>
+</code></pre></div>
+<p>This SQL query performs the following operations:</p>
+<ol>
+<li>
+<p><strong>SELECT DISTINCT(CITY) AS City_Name</strong>: It selects unique city names from the STATION table. The use of DISTINCT ensures that duplicate city names are excluded. The <code>AS City_Name</code> alias is used to rename the result column to "City_Name."</p>
+</li>
+<li>
+<p><strong>FROM STATION</strong>: Specifies the source table as STATION from which to retrieve the data.</p>
+</li>
+<li>
+<p><strong>WHERE ID % 2 = 0</strong>: Filters the rows based on the condition that the ID column is even (divisible by 2). This means only rows with even ID values are included in the result set.</p>
+</li>
+<li>
+<p><strong>ORDER BY CITY ASC</strong>: Orders the result set in ascending order based on the CITY column. The <code>ASC</code> keyword is optional, as sorting is ascending by default.</p>
+</li>
+</ol>
+<h3 id="explanation">Explanation:<a class="headerlink" href="#explanation" title="Permanent link">¶</a></h3>
+<ul>
+<li>
+<p><strong>SELECT DISTINCT(CITY) AS City_Name</strong>: This part of the query is responsible for selecting unique city names from the STATION table.</p>
+</li>
+<li>
+<p><strong>FROM STATION</strong>: Specifies the table from which the data is being retrieved, which is the STATION table in this case.</p>
+</li>
+<li>
+<p><strong>WHERE ID % 2 = 0</strong>: The WHERE clause filters the rows based on the condition that the ID column is even, ensuring that only rows with even ID values are considered.</p>
+</li>
+<li>
+<p><strong>ORDER BY CITY ASC</strong>: Orders the result set in ascending order based on the CITY column. The result will be a list of distinct city names with even ID values, sorted alphabetically.</p>
+</li>
+</ul>
+</details>
+<p>Q9. Find the difference between the total number of CITY entries in the table and the number of distinct CITY entries in the table.
+    where LAT_N is the northern latitude and LONG_W is the western longitude.
+    For example, if there are three records in the table with CITY values 'New York', 'New York', 'Bengalaru', there are 2 different city names: 'New York' and 'Bengalaru'. The query returns , because total number of records - number of unique city names = 3-2 =1</p>
+<details class="note">
+<summary>Answer</summary>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="gu">## Explanation of SQL Query</span>
+<a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a>
+<a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a><span class="gu">### Objective</span>
+<a id="__codelineno-12-4" name="__codelineno-12-4" href="#__codelineno-12-4"></a>The SQL query aims to retrieve information about the <span class="sb">`CITY`</span> column in the <span class="sb">`STATION`</span> table, including the total number of records, the number of unique city names, and the difference between the total count and the count of distinct city names.
+<a id="__codelineno-12-5" name="__codelineno-12-5" href="#__codelineno-12-5"></a>
+<a id="__codelineno-12-6" name="__codelineno-12-6" href="#__codelineno-12-6"></a><span class="gu">### SQL Query</span>
+<a id="__codelineno-12-7" name="__codelineno-12-7" href="#__codelineno-12-7"></a>```sql
+<a id="__codelineno-12-8" name="__codelineno-12-8" href="#__codelineno-12-8"></a>SELECT 
+<a id="__codelineno-12-9" name="__codelineno-12-9" href="#__codelineno-12-9"></a>    COUNT(CITY) AS TOTAL_NUMBER_OF_RECORDS,
+<a id="__codelineno-12-10" name="__codelineno-12-10" href="#__codelineno-12-10"></a>    COUNT(DISTINCT(CITY)) AS NUMBER_OF_UNIQUE_CITY_NAMES,
+<a id="__codelineno-12-11" name="__codelineno-12-11" href="#__codelineno-12-11"></a>    (COUNT(CITY) - COUNT(DISTINCT(CITY))) AS DIFFERENCE_CITY_COUNT  
+<a id="__codelineno-12-12" name="__codelineno-12-12" href="#__codelineno-12-12"></a>FROM 
+<a id="__codelineno-12-13" name="__codelineno-12-13" href="#__codelineno-12-13"></a>    STATION;
+</code></pre></div>
+<h3 id="explanation_1">Explanation<a class="headerlink" href="#explanation_1" title="Permanent link">¶</a></h3>
+<ol>
+<li><strong><code>COUNT(CITY) AS TOTAL_NUMBER_OF_RECORDS</code></strong>: </li>
+<li>This part of the query calculates the total number of records in the <code>STATION</code> table by counting the occurrences of values in the <code>CITY</code> column.</li>
+<li>
+<p>The result is aliased as <code>TOTAL_NUMBER_OF_RECORDS</code> for better readability.</p>
+</li>
+<li>
+<p><strong><code>COUNT(DISTINCT(CITY)) AS NUMBER_OF_UNIQUE_CITY_NAMES</code></strong>: </p>
+<ul>
+<li>This part of the query calculates the count of distinct (unique) values in the <code>CITY</code> column.</li>
+<li>It provides the number of unique city names in the <code>STATION</code> table.</li>
+<li>The result is aliased as <code>NUMBER_OF_UNIQUE_CITY_NAMES</code>.</li>
+</ul>
+</li>
+<li>
+<p><strong><code>(COUNT(CITY) - COUNT(DISTINCT(CITY))) AS DIFFERENCE_CITY_COUNT</code></strong>: </p>
+<ul>
+<li>This part of the query calculates the difference between the total count of city names and the count of distinct city names.</li>
+<li>It gives the count of non-unique (duplicate) city names in the <code>STATION</code> table.</li>
+<li>The result is aliased as <code>DIFFERENCE_CITY_COUNT</code>.</li>
+</ul>
+</li>
+</ol>
+<h3 id="result">Result<a class="headerlink" href="#result" title="Permanent link">¶</a></h3>
+<p>The final result of the query will provide a single row with three columns:
+- <code>TOTAL_NUMBER_OF_RECORDS</code>: Total count of records in the <code>STATION</code> table.
+  - <code>NUMBER_OF_UNIQUE_CITY_NAMES</code>: Count of unique city names in the <code>STATION</code> table.
+  - <code>DIFFERENCE_CITY_COUNT</code>: The difference between the total count and the count of distinct city names, indicating the number of duplicate city names in the <code>STATION</code> table.
+```</p>
+</details>
+<p>--Q10. Query the two cities in STATION with the shortest and longest
+CITY names, as well as their respective lengths (i.e.: number of
+characters in the name). If there is more than one smallest or largest
+city, choose the one that comes first when ordered alphabetically.
+--Sample Input
+--For example, CITY has four entries: DEF, ABC, PQRS and WXY.
+--Sample Output
+--ABC 3
+--PQRS 4
+--Hint -
+--When ordered alphabetically, the CITY names are listed as ABC, DEF,
+PQRS, and WXY, with lengths and. The longest name is PQRS, but there
+are options for shortest named city. Choose ABC, because it comes first
+alphabetically.
+--Note
+--You can write two separate queries to get the desired output. It need
+not be a single query.</p>
+<details class="note">
+<summary>Answer</summary>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="gu">## Explanation of SQL Queries</span>
+<a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a>
+<a id="__codelineno-13-3" name="__codelineno-13-3" href="#__codelineno-13-3"></a><span class="gu">### Query 1</span>
+<a id="__codelineno-13-4" name="__codelineno-13-4" href="#__codelineno-13-4"></a>```sql
+<a id="__codelineno-13-5" name="__codelineno-13-5" href="#__codelineno-13-5"></a>SELECT CITY, LENGTH(CITY) AS MIN_LENGTH_OF_CITY
+<a id="__codelineno-13-6" name="__codelineno-13-6" href="#__codelineno-13-6"></a>FROM STATION
+<a id="__codelineno-13-7" name="__codelineno-13-7" href="#__codelineno-13-7"></a>ORDER BY LENGTH(CITY) ASC
+<a id="__codelineno-13-8" name="__codelineno-13-8" href="#__codelineno-13-8"></a>LIMIT 1;
+</code></pre></div>
+<h4 id="objective">Objective<a class="headerlink" href="#objective" title="Permanent link">¶</a></h4>
+<p>The first query aims to retrieve the city with the minimum length (number of characters) from the <code>CITY</code> column in the <code>STATION</code> table.</p>
+<h4 id="explanation_2">Explanation<a class="headerlink" href="#explanation_2" title="Permanent link">¶</a></h4>
+<ol>
+<li><strong><code>SELECT CITY, LENGTH(CITY) AS MIN_LENGTH_OF_CITY</code></strong>:</li>
+<li>The query selects the <code>CITY</code> column and calculates the length of each city name using <code>LENGTH(CITY)</code>.</li>
+<li>
+<p>The result is aliased as <code>MIN_LENGTH_OF_CITY</code> for better readability.</p>
+</li>
+<li>
+<p><strong><code>FROM STATION</code></strong>:</p>
+<ul>
+<li>Specifies that the data is to be retrieved from the <code>STATION</code> table.</li>
+</ul>
+</li>
+<li>
+<p><strong><code>ORDER BY LENGTH(CITY) ASC</code></strong>:</p>
+<ul>
+<li>Orders the result set in ascending order based on the length of the city names.</li>
+<li>This ensures that the city with the minimum length comes first in the result set.</li>
+</ul>
+</li>
+<li>
+<p><strong><code>LIMIT 1</code></strong>:</p>
+<ul>
+<li>Limits the result set to only one row, effectively retrieving the city with the minimum length.</li>
+</ul>
+</li>
+</ol>
+<h3 id="query-2">Query 2<a class="headerlink" href="#query-2" title="Permanent link">¶</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a><span class="k">SELECT</span><span class="w"> </span><span class="n">CITY</span><span class="p">,</span><span class="w"> </span><span class="k">LENGTH</span><span class="p">(</span><span class="n">CITY</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">MAX_LENGTH_OF_CITY</span>
+<a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a><span class="k">FROM</span><span class="w"> </span><span class="n">STATION</span>
+<a id="__codelineno-14-3" name="__codelineno-14-3" href="#__codelineno-14-3"></a><span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="k">LENGTH</span><span class="p">(</span><span class="n">CITY</span><span class="p">)</span><span class="w"> </span><span class="k">DESC</span>
+<a id="__codelineno-14-4" name="__codelineno-14-4" href="#__codelineno-14-4"></a><span class="k">LIMIT</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
+</code></pre></div>
+<h4 id="objective_1">Objective<a class="headerlink" href="#objective_1" title="Permanent link">¶</a></h4>
+<p>The second query aims to retrieve the city with the maximum length (number of characters) from the <code>CITY</code> column in the <code>STATION</code> table.</p>
+<h4 id="explanation_3">Explanation<a class="headerlink" href="#explanation_3" title="Permanent link">¶</a></h4>
+<ol>
+<li><strong><code>SELECT CITY, LENGTH(CITY) AS MAX_LENGTH_OF_CITY</code></strong>:</li>
+<li>Similar to the first query, this selects the <code>CITY</code> column and calculates the length of each city name.</li>
+<li>
+<p>The result is aliased as <code>MAX_LENGTH_OF_CITY</code>.</p>
+</li>
+<li>
+<p><strong><code>FROM STATION</code></strong>:</p>
+<ul>
+<li>Specifies that the data is to be retrieved from the <code>STATION</code> table.</li>
+</ul>
+</li>
+<li>
+<p><strong><code>ORDER BY LENGTH(CITY) DESC</code></strong>:</p>
+<ul>
+<li>Orders the result set in descending order based on the length of the city names.</li>
+<li>This ensures that the city with the maximum length comes first in the result set.</li>
+</ul>
+</li>
+<li>
+<p><strong><code>LIMIT 1</code></strong>:</p>
+<ul>
+<li>Limits the result set to only one row, effectively retrieving the city with the maximum length.</li>
+</ul>
+</li>
+</ol>
+<h3 id="result_1">Result<a class="headerlink" href="#result_1" title="Permanent link">¶</a></h3>
+<p>The result of each query will be a single row containing the city name and its corresponding length. The first query provides the city with the minimum length, and the second query provides the city with the maximum length.
+```</p>
+</details>
+<p>Q11. Query the list of CITY names starting with vowels (i.e., a, e,
+i, o, or u) from STATION. Your result cannot contain duplicates.</p>
+<details class="note">
+<summary>Answer</summary>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a>```sql
+<a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a>SELECT DISTINCT CITY
+<a id="__codelineno-15-3" name="__codelineno-15-3" href="#__codelineno-15-3"></a>FROM STATION
+<a id="__codelineno-15-4" name="__codelineno-15-4" href="#__codelineno-15-4"></a>WHERE LOWER(CITY) LIKE 'a%'
+<a id="__codelineno-15-5" name="__codelineno-15-5" href="#__codelineno-15-5"></a>   OR LOWER(CITY) LIKE 'e%'
+<a id="__codelineno-15-6" name="__codelineno-15-6" href="#__codelineno-15-6"></a>   OR LOWER(CITY) LIKE 'i%'
+<a id="__codelineno-15-7" name="__codelineno-15-7" href="#__codelineno-15-7"></a>   OR LOWER(CITY) LIKE 'o%'
+<a id="__codelineno-15-8" name="__codelineno-15-8" href="#__codelineno-15-8"></a>   OR LOWER(CITY) LIKE 'u%'
+<a id="__codelineno-15-9" name="__codelineno-15-9" href="#__codelineno-15-9"></a>ORDER BY CITY;
+</code></pre></div>
+<h3 id="objective_2">Objective<a class="headerlink" href="#objective_2" title="Permanent link">¶</a></h3>
+<p>The SQL query aims to retrieve distinct city names from the <code>CITY</code> column in the <code>STATION</code> table where the city name starts with a vowel (either 'a', 'e', 'i', 'o', or 'u'). The result is ordered alphabetically by city name.</p>
+<h3 id="explanation_4">Explanation<a class="headerlink" href="#explanation_4" title="Permanent link">¶</a></h3>
+<ol>
+<li><strong><code>SELECT DISTINCT CITY</code></strong>:</li>
+<li>
+<p>This part of the query selects distinct city names from the <code>CITY</code> column.</p>
+</li>
+<li>
+<p><strong><code>FROM STATION</code></strong>:</p>
+<ul>
+<li>Specifies that the data is to be retrieved from the <code>STATION</code> table.</li>
+</ul>
+</li>
+<li>
+<p><strong><code>WHERE LOWER(CITY) LIKE 'a%' OR LOWER(CITY) LIKE 'e%' OR LOWER(CITY) LIKE 'i%' OR LOWER(CITY) LIKE 'o%' OR LOWER(CITY) LIKE 'u%'</code></strong>:</p>
+<ul>
+<li>The <code>WHERE</code> clause filters the results based on the condition that the lowercase version of the city name (<code>LOWER(CITY)</code>) should start with any of the vowels ('a', 'e', 'i', 'o', or 'u').</li>
+<li><code>LIKE 'a%'</code> checks for city names starting with 'a', and similarly for other vowels.</li>
+<li>The <code>LOWER()</code> function is used to ensure case-insensitive comparison.</li>
+</ul>
+</li>
+<li>
+<p><strong><code>ORDER BY CITY</code></strong>:</p>
+<ul>
+<li>Orders the result set alphabetically by the city names.</li>
+</ul>
+</li>
+</ol>
+<h3 id="result_2">Result<a class="headerlink" href="#result_2" title="Permanent link">¶</a></h3>
+<p>The result of the query will be a list of distinct city names from the <code>STATION</code> table where each city name starts with a vowel. The list is ordered alphabetically by city name.</p>
+</details>
+<p>Q12. Query the list of CITY names ending with vowels (a, e, i, o, u) from STATION. Your result cannot contain duplicates.
+Certainly! Here's the explanation of the provided SQL query in Markdown format:</p>
+<details class="note">
+<summary>Answer</summary>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a><span class="gu">## Explanation of SQL Query</span>
+<a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a>
+<a id="__codelineno-16-3" name="__codelineno-16-3" href="#__codelineno-16-3"></a>```sql
+<a id="__codelineno-16-4" name="__codelineno-16-4" href="#__codelineno-16-4"></a>SELECT DISTINCT CITY
+<a id="__codelineno-16-5" name="__codelineno-16-5" href="#__codelineno-16-5"></a>FROM STATION
+<a id="__codelineno-16-6" name="__codelineno-16-6" href="#__codelineno-16-6"></a>WHERE LOWER(CITY) LIKE '%a'
+<a id="__codelineno-16-7" name="__codelineno-16-7" href="#__codelineno-16-7"></a>   OR LOWER(CITY) LIKE '%e'
+<a id="__codelineno-16-8" name="__codelineno-16-8" href="#__codelineno-16-8"></a>   OR LOWER(CITY) LIKE '%i'
+<a id="__codelineno-16-9" name="__codelineno-16-9" href="#__codelineno-16-9"></a>   OR LOWER(CITY) LIKE '%o'
+<a id="__codelineno-16-10" name="__codelineno-16-10" href="#__codelineno-16-10"></a>   OR LOWER(CITY) LIKE '%u'
+<a id="__codelineno-16-11" name="__codelineno-16-11" href="#__codelineno-16-11"></a>ORDER BY CITY;
+</code></pre></div>
+<h3 id="objective_3">Objective<a class="headerlink" href="#objective_3" title="Permanent link">¶</a></h3>
+<p>The SQL query aims to retrieve distinct city names from the <code>CITY</code> column in the <code>STATION</code> table where the city name ends with a vowel ('a', 'e', 'i', 'o', or 'u'). The result is ordered alphabetically by city name.</p>
+<h3 id="explanation_5">Explanation<a class="headerlink" href="#explanation_5" title="Permanent link">¶</a></h3>
+<ol>
+<li><strong><code>SELECT DISTINCT CITY</code></strong>:</li>
+<li>
+<p>This part of the query selects distinct city names from the <code>CITY</code> column.</p>
+</li>
+<li>
+<p><strong><code>FROM STATION</code></strong>:</p>
+<ul>
+<li>Specifies that the data is to be retrieved from the <code>STATION</code> table.</li>
+</ul>
+</li>
+<li>
+<p><strong><code>WHERE LOWER(CITY) LIKE '%a' OR LOWER(CITY) LIKE '%e' OR LOWER(CITY) LIKE '%i' OR LOWER(CITY) LIKE '%o' OR LOWER(CITY) LIKE '%u'</code></strong>:</p>
+<ul>
+<li>The <code>WHERE</code> clause filters the results based on the condition that the lowercase version of the city name (<code>LOWER(CITY)</code>) should end with any of the vowels ('a', 'e', 'i', 'o', or 'u').</li>
+<li><code>LIKE '%a'</code> checks for city names ending with 'a', and similarly for other vowels.</li>
+<li>The <code>%</code> symbol is a wildcard character that represents zero or more characters.</li>
+</ul>
+</li>
+<li>
+<p><strong><code>ORDER BY CITY</code></strong>:</p>
+<ul>
+<li>Orders the result set alphabetically by the city names.</li>
+</ul>
+</li>
+</ol>
+<h3 id="result_3">Result<a class="headerlink" href="#result_3" title="Permanent link">¶</a></h3>
+<p>The result of the query will be a list of distinct city names from the <code>STATION</code> table where each city name ends with a vowel. The list is ordered alphabetically by city name.</p>
+<p>This query is useful for obtaining a subset of city names that meet the specified criteria, providing a result set containing only distinct city names that end with a vowel.</p>
+<div class="highlight"><pre><span></span><code>```markdown
+## Explanation of SQL Query
+
+```sql
+SELECT DISTINCT CITY
+FROM STATION
+WHERE LOWER(CITY) LIKE '%a'
+   OR LOWER(CITY) LIKE '%e'
+   OR LOWER(CITY) LIKE '%i'
+   OR LOWER(CITY) LIKE '%o'
+   OR LOWER(CITY) LIKE '%u'
+ORDER BY CITY;
+```
+
+### Objective
+The SQL query aims to retrieve distinct city names from the `CITY` column in the `STATION` table where the city name ends with a vowel ('a', 'e', 'i', 'o', or 'u'). The result is ordered alphabetically by city name.
+
+### Explanation
+
+1. **`SELECT DISTINCT CITY`**:
+   - This part of the query selects distinct city names from the `CITY` column.
+
+   2. **`FROM STATION`**:
+      - Specifies that the data is to be retrieved from the `STATION` table.
+
+   3. **`WHERE LOWER(CITY) LIKE '%a' OR LOWER(CITY) LIKE '%e' OR LOWER(CITY) LIKE '%i' OR LOWER(CITY) LIKE '%o' OR LOWER(CITY) LIKE '%u'`**:
+      - The `WHERE` clause filters the results based on the condition that the lowercase version of the city name (`LOWER(CITY)`) should end with any of the vowels ('a', 'e', 'i', 'o', or 'u').
+      - `LIKE '%a'` checks for city names ending with 'a', and similarly for other vowels.
+      - The `%` symbol is a wildcard character that represents zero or more characters.
+
+   4. **`ORDER BY CITY`**:
+      - Orders the result set alphabetically by the city names.
+
+### Result
+The result of the query will be a list of distinct city names from the `STATION` table where each city name ends with a vowel. The list is ordered alphabetically by city name.
+</code></pre></div>
+</details>
+<p>Q13. Query the list of CITY names from STATION that do not start with
+vowels. Your result cannot contain duplicates.</p>
+<details class="note">
+<summary>Answer</summary>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a>```sql
+<a id="__codelineno-18-2" name="__codelineno-18-2" href="#__codelineno-18-2"></a>SELECT DISTINCT CITY
+<a id="__codelineno-18-3" name="__codelineno-18-3" href="#__codelineno-18-3"></a>FROM STATION
+<a id="__codelineno-18-4" name="__codelineno-18-4" href="#__codelineno-18-4"></a>WHERE LOWER(CITY) NOT LIKE 'a%'
+<a id="__codelineno-18-5" name="__codelineno-18-5" href="#__codelineno-18-5"></a>   AND LOWER(CITY) NOT LIKE 'e%'
+<a id="__codelineno-18-6" name="__codelineno-18-6" href="#__codelineno-18-6"></a>   AND LOWER(CITY) NOT LIKE 'i%'
+<a id="__codelineno-18-7" name="__codelineno-18-7" href="#__codelineno-18-7"></a>   AND LOWER(CITY) NOT LIKE 'o%'
+<a id="__codelineno-18-8" name="__codelineno-18-8" href="#__codelineno-18-8"></a>   AND LOWER(CITY) NOT LIKE 'u%'
+<a id="__codelineno-18-9" name="__codelineno-18-9" href="#__codelineno-18-9"></a>ORDER BY CITY;
+</code></pre></div>
+<h3 id="objective_4">Objective<a class="headerlink" href="#objective_4" title="Permanent link">¶</a></h3>
+<p>The SQL query aims to retrieve distinct city names from the <code>CITY</code> column in the <code>STATION</code> table where the city name does not start with any vowel ('a', 'e', 'i', 'o', or 'u'). The result is ordered alphabetically by city name.</p>
+<h3 id="explanation_6">Explanation<a class="headerlink" href="#explanation_6" title="Permanent link">¶</a></h3>
+<ol>
+<li><strong><code>SELECT DISTINCT CITY</code></strong>:</li>
+<li>
+<p>This part of the query selects distinct city names from the <code>CITY</code> column.</p>
+</li>
+<li>
+<p><strong><code>FROM STATION</code></strong>:</p>
+<ul>
+<li>Specifies that the data is to be retrieved from the <code>STATION</code> table.</li>
+</ul>
+</li>
+<li>
+<p><strong><code>WHERE LOWER(CITY) NOT LIKE 'a%' AND LOWER(CITY) NOT LIKE 'e%' AND LOWER(CITY) NOT LIKE 'i%' AND LOWER(CITY) NOT LIKE 'o%' AND LOWER(CITY) NOT LIKE 'u%'</code></strong>:</p>
+<ul>
+<li>The <code>WHERE</code> clause filters the results based on the condition that the lowercase version of the city name (<code>LOWER(CITY)</code>) should not start with any of the vowels ('a', 'e', 'i', 'o', or 'u').</li>
+<li><code>NOT LIKE 'a%'</code> ensures that city names do not start with 'a', and similarly for other vowels.</li>
+</ul>
+</li>
+<li>
+<p><strong><code>ORDER BY CITY</code></strong>:</p>
+<ul>
+<li>Orders the result set alphabetically by the city names.</li>
+</ul>
+</li>
+</ol>
+<h3 id="result_4">Result<a class="headerlink" href="#result_4" title="Permanent link">¶</a></h3>
+<p>The result of the query will be a list of distinct city names from the <code>STATION</code> table where each city name does not start with any vowel. The list is ordered alphabetically by city name.</p>
+<p>This query is useful for obtaining a subset of city names that meet the specified criteria, providing a result set containing only distinct city names that do not start with a vowel.</p>
+</details>
+<p>Q14.Query the list of CITY names from STATION that do not end with
+vowels. Your result cannot contain duplicates.</p>
+<details class="note">
+<summary>Answer</summary>
+<div class="highlight"><pre><span></span><code>```markdown
+## Explanation of SQL Query
+
+```sql
+SELECT DISTINCT CITY
+FROM STATION
+WHERE LOWER(CITY) NOT LIKE '%a'
+   AND LOWER(CITY) NOT LIKE '%e'
+   AND LOWER(CITY) NOT LIKE '%i'
+   AND LOWER(CITY) NOT LIKE '%o'
+   AND LOWER(CITY) NOT LIKE '%u'
+ORDER BY CITY;
+```
+</code></pre></div>
+<h3 id="objective_5">Objective<a class="headerlink" href="#objective_5" title="Permanent link">¶</a></h3>
+<p>The SQL query aims to retrieve distinct city names from the <code>CITY</code> column in the <code>STATION</code> table where the city name does not contain any vowel ('a', 'e', 'i', 'o', or 'u') in any position. The result is ordered alphabetically by city name.</p>
+<h3 id="explanation_7">Explanation<a class="headerlink" href="#explanation_7" title="Permanent link">¶</a></h3>
+<ol>
+<li><strong><code>SELECT DISTINCT CITY</code></strong>:</li>
+<li>
+<p>This part of the query selects distinct city names from the <code>CITY</code> column.</p>
+</li>
+<li>
+<p><strong><code>FROM STATION</code></strong>:</p>
+<ul>
+<li>Specifies that the data is to be retrieved from the <code>STATION</code> table.</li>
+</ul>
+</li>
+<li>
+<p><strong><code>WHERE LOWER(CITY) NOT LIKE '%a' AND LOWER(CITY) NOT LIKE '%e' AND LOWER(CITY) NOT LIKE '%i' AND LOWER(CITY) NOT LIKE '%o' AND LOWER(CITY) NOT LIKE '%u'</code></strong>:</p>
+<ul>
+<li>The <code>WHERE</code> clause filters the results based on the condition that the lowercase version of the city name (<code>LOWER(CITY)</code>) should not contain any of the vowels ('a', 'e', 'i', 'o', or 'u') in any position.</li>
+<li><code>NOT LIKE '%a'</code> ensures that city names do not contain 'a' in any position, and similarly for other vowels.</li>
+</ul>
+</li>
+<li>
+<p><strong><code>ORDER BY CITY</code></strong>:</p>
+<ul>
+<li>Orders the result set alphabetically by the city names.</li>
+</ul>
+</li>
+</ol>
+<h3 id="result_5">Result<a class="headerlink" href="#result_5" title="Permanent link">¶</a></h3>
+<p>The result of the query will be a list of distinct city names from the <code>STATION</code> table where each city name does not contain any vowel in any position. The list is ordered alphabetically by city name.</p>
+<p>This query is useful for obtaining a subset of city names that meet the specified criteria, providing a result set containing only distinct city names that do not contain any vowel.</p>
+</details>
+<p>Q15. Query the list of CITY names from STATION that either do not
+start with vowels or do not end with vowels. Your result cannot contain
+duplicates.</p>
+<details class="note">
+<summary>Answer</summary>
+<div class="highlight"><pre><span></span><code>```markdown
+## Explanation of SQL Query
+
+```sql
+SELECT DISTINCT CITY
+FROM STATION
+WHERE CITY NOT REGEXP '^[aeiou]' OR CITY NOT REGEXP '[aeiou]$';
+```
+
+### Objective
+The SQL query aims to retrieve distinct city names from the `CITY` column in the `STATION` table where the city name does not start with a vowel ('a', 'e', 'i', 'o', or 'u') or end with a vowel. The result set only includes city names that satisfy either of these conditions.
+
+### Explanation
+
+1. **`SELECT DISTINCT CITY`**:
+   - This part of the query selects distinct city names from the `CITY` column.
+
+   2. **`FROM STATION`**:
+      - Specifies that the data is to be retrieved from the `STATION` table.
+
+   3. **`WHERE CITY NOT REGEXP '^[aeiou]' OR CITY NOT REGEXP '[aeiou]$'`**:
+      - The `WHERE` clause filters the results based on the condition that the city name should not match the regular expression patterns.
+      - `'^[aeiou]'` checks if the city name does not start with a vowel.
+      - `'[aeiou]$'` checks if the city name does not end with a vowel.
+      - The `OR` operator allows the inclusion of city names that satisfy either of these conditions.
+
+### Result
+The result of the query will be a list of distinct city names from the `STATION` table where each city name does not start with a vowel or does not end with a vowel. This provides a subset of city names that meet the specified criteria.
+
+This query is useful for obtaining a result set containing only distinct city names that do not start or end with a vowel.
+</code></pre></div>
+</details></div>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12Z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+          
+          <a href="../../2.SQL%20Basics.html" class="md-footer__link md-footer__link--prev" aria-label="Previous: 2.Basics">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                2.Basics
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="Sample.html" class="md-footer__link md-footer__link--next" aria-label="Next: SQL Query Challenges">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                SQL Query Challenges
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4Z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../../..", "features": ["announce.dismiss", "content.action.edit", "content.action.view", "content.code.annotate", "content.code.copy", "content.tooltips", "header.autohide", "navigation.footer", "navigation.indexes", "navigation.instant", "navigation.path", "navigation.tabs", "navigation.top", "navigation.tracking", "search.highlight", "search.share", "search.suggest", "toc.follow"], "search": "../../../assets/javascripts/workers/search.b8dbb3d2.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.c8d2eff1.min.js"></script>
+      
+    
+  </body>
+</html>
